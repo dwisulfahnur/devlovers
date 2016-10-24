@@ -26,26 +26,27 @@ class UserController extends Controller
 
     public function postRegister(RegisterRequest $request)
     {
-        $user = new Users;
-        $user->full_name = $request->full_name;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->password = $request->password;
-        $user->dob = $request->dob;
-        $user->gender = $request->gender;
-        $user->roles_id = $request->roles;
-        $user->city_id = $request->city;
 
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('images'), $imageName);
-        $user->profile_picture = 'images/'.$imageName;
+
+        $user = new Users(
+                        $full_name = $request->full_name,
+                        $email = $request->email,
+                        $username = $request->username,
+                        $password = $request->password,
+                        $dob = $request->dob,
+                        $gender = $request->gender,
+                        $roles_id = $request->roles,
+                        $city_id = $request->city,
+                        $profile_picture = 'images/' . $imageName
+                    );
 
         if($user->save()){
+            $request->image->move(public_path('images'), $imageName);
             return "Saved success!";
         }
         else{
             return "Failed to Save";
         }
-        
     }
 }
