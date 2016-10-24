@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('gender');
             $table->integer('roles_id')->unsigned();
             $table->integer('city_id')->unsigned();
+            $table->string('profile_picture', 50);
             $table->timestamps();
             $table->softDeletes();
 
