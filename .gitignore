@@ -24,4 +24,4 @@ public/storage
 .rocketeer/
 
 #image file 
-public/images/*
+public/images
