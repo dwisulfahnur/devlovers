@@ -6,7 +6,9 @@ use App\City;
 use App\Country;
 use App\Roles;
 use App\Users;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 
 use App\Http\Requests;
@@ -30,18 +32,19 @@ class UserController extends Controller
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
 
         $user = new Users(
-                        $full_name = $request->full_name,
-                        $email = $request->email,
-                        $username = $request->username,
-                        $password = $request->password,
-                        $dob = $request->dob,
-                        $gender = $request->gender,
-                        $roles_id = $request->roles,
-                        $city_id = $request->city,
+                        $full_name  = $request->full_name,
+                        $email      = $request->email,
+                        $username   = $request->username,
+                        $password   = Hash::make($request->password),
+                        $dob        = $request->dob,
+                        $gender     = $request->gender,
+                        $roles_id   = $request->roles,
+                        $city_id    = $request->city,
                         $profile_picture = 'images/' . $imageName
                     );
 
-        if($user->save()){
+        if($user->save())
+        {
             $request->image->move(public_path('images'), $imageName);
             return "Saved success!";
         }
