@@ -23,14 +23,11 @@ class UserController extends Controller
         $city = City::all();
         $data = [$roles, $city];
         return view('user.register', ["roles"=>$roles, "cities"=>$city]);
-
     }
 
     public function postRegister(RegisterRequest $request)
     {
-
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
-
         $user = new Users(
                         $full_name  = $request->full_name,
                         $email      = $request->email,
@@ -43,13 +40,24 @@ class UserController extends Controller
                         $profile_picture = 'images/' . $imageName
                     );
 
-        if($user->save())
+        if($user->save() And $request->image->move(public_path('images'), $imageName))
         {
-            $request->image->move(public_path('images'), $imageName);
             return "Saved success!";
         }
         else{
             return "Failed to Save";
         }
+    }
+
+    public function login()
+    {
+        //return view('user.login');
+        $data = Roles::all();
+        dd($data);
+    }
+
+    public function postLogin()
+    {
+        return "you're logged in";
     }
 }
