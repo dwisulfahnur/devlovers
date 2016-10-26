@@ -14,7 +14,6 @@ class Users extends Model
         $this->username = $username;
         $this->password = $password;
         $this->dob = $dob;
-        $this->age = date_diff(date_create($dob), date_create('today'))->y;;
         $this->gender = $gender;
         $this->roles_id = $roles_id;
         $this->city_id = $city_id;
