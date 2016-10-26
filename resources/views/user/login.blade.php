@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-        </title>
-    </head>
-    <body>
+@extends('user.layouts.app')
+
+@section('title', 'Page Title')
+
+    @section('content')
         @if ($errors)
             <ul>
                 @foreach ($errors->all() as $error)
@@ -14,15 +12,17 @@
         @endif
         <h1>Login:</h1>
         {!! Form::open(['url' => '/login', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
-
-            <label>Email</label>
-            {!! Form::text('email'); !!}<br/>
-
-            <label>Password</label>
-            {!! Form::password('password'); !!}<br/>
-
-            {!! Form::submit('Login') !!}
-
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" name="password">
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
         {!! Form::close() !!}
-    </body>
-</html>
+    @endsection
