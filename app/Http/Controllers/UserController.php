@@ -22,8 +22,6 @@ class UserController extends Controller
         return view('user.home', ['name'=>$name]);
     }
 
-
-
     public function register()
     {
         $roles = Roles::all();
@@ -81,7 +79,6 @@ class UserController extends Controller
         }
         else{
             return redirect('login');
-
         }
     }
 
