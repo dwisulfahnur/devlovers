@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use App\City;
-use App\Country;
-use App\Roles;
 use App\Users;
 
 use Illuminate\Http\Request;
@@ -24,10 +21,9 @@ class UserController extends Controller
 
     public function register()
     {
-        $roles = Roles::all();
-        $city = City::all();
-        $data = [$roles, $city];
-        return view('user.register', ["roles"=>$roles, "cities"=>$city]);
+        $roles = DB::table('roles')->select('id', 'name')->get();
+        $cities = DB::table('cities')->select('id', 'name')->get();
+        return view('user.register', ["roles"=>$roles, "cities"=>$cities]);
     }
 
     public function postRegister(RegisterRequest $request)
@@ -86,4 +82,5 @@ class UserController extends Controller
         $request->session()->flush();
         return redirect('login');
     }
+
 }
