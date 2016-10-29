@@ -24,12 +24,13 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'image'             =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2024',
-            'full_name'         =>  'required|min:8|max:50',
-            'email'             =>  'required|unique:users,email|min:8|email',
-            'username'          =>  'required|unique:users,username|min:8',
-            'password'          =>  'required|min:8|max:50',
-            'dob'               =>  'required|before:now',
+            'image'                 =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2024',
+            'full_name'             =>  'required|min:8|max:50',
+            'email'                 =>  'required|unique:users,email|min:8|email',
+            'username'              =>  'required|unique:users,username|min:8',
+            'password'              =>  'required|min:6|confirmed',
+            'password_confirmation' =>  'required|min:6|same:password',
+            'dob'                   =>  'required|before:now',
         ];
     }
 }
