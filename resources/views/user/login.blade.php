@@ -1,6 +1,6 @@
 @extends('user.layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Login')
 
     @section('content')
         @if ($errors)
@@ -24,5 +24,5 @@
                 <label><input type="checkbox"> Remember me</label>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
-        {!! Form::close() !!}
+        {!! Form::close() !!} Don't have account? <a href="/register">Register</a>
     @endsection
