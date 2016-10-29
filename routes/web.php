@@ -16,13 +16,22 @@ Route::get('/', function () {
 })->name('welocome');
 
 Route::group(['middleware' => 'checkuser'], function(){
+    //test Home route
     Route::get('/home', 'UserController@home')->name('home');
+
+    //browse User
+    Route::get('/browse_user', 'BrowseUserController@browse_user')->name('browse_user');
+    Route::post('/browse_user', 'BrowseUserController@filter_browse_post');
+    Route::get('/filter_user', 'BrowseUserController@filter_user');
+
 });
 
 Route::group(['middleware' => 'foruser'], function(){
+    //Register Controller
     Route::get('/register', 'UserController@register')->name('register');
     Route::post('/register', 'UserController@postRegister');
 
+    //Login Routes
     Route::get('/login', 'UserController@login')->name('login');
     Route::post('/login', 'UserController@postlogin');
 });
