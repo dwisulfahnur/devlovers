@@ -17,7 +17,7 @@
         <div class="col-md-12">
         @if ($users)
             @foreach ($users as $user)
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <img class="card-img-top" src="{{ $user->profile_picture }}" alt="Card image cap" width="300px" height="300px">
                     <div class="card-block">
                         <h4>{{ $user->full_name }}</h4>
@@ -31,7 +31,7 @@
             <h1 style="float:center">User Not Found</h1>
         @endif
         </div>
-        <div class="col-md-12">
-            {!! $users->render() !!}
+        <div class="col-md-12" style="text-align:center">
+            {{ $users->render() }}
         </div>
     @endsection

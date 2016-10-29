@@ -43,7 +43,7 @@ class BrowseUserController extends Controller
                                   ->where('roles_id', 'LIKE', $roles)
                                   ->where('city_id', 'LIKE', $city)
                                   ->paginate(5);
-        
+
         return view('user.browse', ["users"=>$user]);
     }
 
