@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('username', 50);
             $table->string('password', 100);
             $table->date('dob');
-            $table->boolean('gender');
+            $table->integer('gender');
             $table->integer('roles_id')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->string('profile_picture', 50);
