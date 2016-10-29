@@ -9,18 +9,16 @@ use App\Http\Requests;
 class BrowseUserController extends Controller
 {
     public function browse_user(Request $request){
-        $user = DB::table('users')->select('id', 'full_name', 'profile_picture', 'gender')->simplePaginate(5);
+        $user = DB::table('users')->select('id', 'full_name', 'profile_picture', 'gender')->paginate(5);
         //dd($user);
         return view('user.browse', ["users"=>$user]);
-
     }
 
     public function filter_user(Request $request){
         $roles = DB::table('roles')->select('id', 'name')->get();
         $cities = DB::table('cities')->select('id', 'name')->get();
 
-        return view('user.browse_filter', ["roles"=>$roles, "cities"=>$cities, "users"=>null]);
-
+        return view('user.browse_filter', ["roles"=>$roles, "cities"=>$cities]);
     }
 
     public function filter_browse_post(Request $request){
@@ -36,7 +34,6 @@ class BrowseUserController extends Controller
         }
         $roles = ($request->roles) ? $request->roles : '%';
         $city = ($request->city) ? $request->city : '%';
-
 
         $user = DB::table('users')->select('id', 'full_name', 'profile_picture')
                                   ->where('gender', 'LIKE', $gender)
