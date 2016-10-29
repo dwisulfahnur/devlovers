@@ -1,6 +1,6 @@
 @extends('user.layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Set Filter Browse')
 
     @section('content')
         @if ($errors)
@@ -12,7 +12,7 @@
         @endif
         <h1>Filter</h1>
 
-        {!! Form::open(['url' => '/browse_user', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['url' => '/browse_user', 'method' => 'get', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="form-group">
                 <label for="gender">Gender:</label>

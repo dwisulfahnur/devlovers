@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="re-pwd">Repeat your password</label>
-                <input type="password" class="form-control" id="re-pwd" name="re-password">
+                <input type="password" class="form-control" id="re-pwd" name="password_confirmation">
             </div>
 
             <div class="form-group">
