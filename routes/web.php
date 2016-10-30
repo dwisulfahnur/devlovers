@@ -20,8 +20,7 @@ Route::group(['middleware' => 'checkuser'], function(){
     Route::get('/home', 'UserController@home')->name('home');
 
     //browse User
-    Route::get('/browse_user', 'BrowseUserController@browse_user')->name('browse_user');
-    Route::post('/browse_user', 'BrowseUserController@filter_browse_post');
+    Route::get('/browse_user', 'BrowseUserController@browse_user');
     Route::get('/filter_user', 'BrowseUserController@filter_user');
 
 });
@@ -34,6 +33,7 @@ Route::group(['middleware' => 'foruser'], function(){
     //Login Routes
     Route::get('/login', 'UserController@login')->name('login');
     Route::post('/login', 'UserController@postlogin');
+
 });
 
 Route::get('/logout', 'UserController@logout')->name('logout');
