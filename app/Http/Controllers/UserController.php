@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use App\Users;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,8 +13,8 @@ use App\Http\Requests;
 
 class UserController extends Controller
 {
-    public function home(){
-        $name = session('username');
+    public function home(Request $request){
+        $name = $request->session()->get('username');
         return view('user.home', ['name'=>$name]);
     }
 
@@ -35,7 +34,7 @@ class UserController extends Controller
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
 
         //Create Object of User
-        $user = new Users(
+        $user = new \App\Users(
                         $full_name  = $request->full_name,
                         $email      = $request->email,
                         $username   = $request->username,
