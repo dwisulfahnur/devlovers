@@ -23,8 +23,10 @@ To setup database to this application, setup in .env file and enter the command 
 
 <tt>php artisan migrate</tt>
 
-Then, you need some data in your database like City and Roles. You will found schema directory on this repository.
+Then, you need some schema file in your database like Country, City and Roles. You will found schema directory on this repository.
 Import some schema in the directory to your database
 then Run the app using the command below:
 
 <tt>php artisan serve</tt>
+
+Happy testing :)
