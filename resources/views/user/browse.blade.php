@@ -21,8 +21,8 @@
                     <img class="card-img-top" src="{{ $user->profile_picture }}" alt="Card image cap" width="300px" height="300px">
                     <div class="card-block">
                         <h4>{{ $user->full_name }}</h4>
-                        <a href="?like=1&target={{ $user->id }}" class="btn btn-primary disable">Like</a>
-                        <a href="?like=0&target={{ $user->id }}" class="btn btn-primary">Dislike</a>
+                        <a href="{{ $url }}like=1&target={{ $user->id }}" class="btn btn-primary disable">Like</a>
+                        <a href="{{ $url }}like=0&target={{ $user->id }}" class="btn btn-primary">Dislike</a>
                     </div>
                     <br>
                 </div>
