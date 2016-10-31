@@ -11,6 +11,7 @@ class BrowseUserController extends Controller
 {
     public function browse_user(Request $request){
         $user_id = DB::table('users')->select('id')->where('username', $request->session()->get('username'))->first()->id;
+        //handle filter request
         $_gender = $request->has('gender');
         $_roles = $request->has('roles');
         $_city = $request->has('city');
@@ -19,6 +20,7 @@ class BrowseUserController extends Controller
             $user = DB::table('users')->select('id', 'full_name', 'profile_picture', 'gender')
                                       ->whereNotIn('id',[$user_id])
                                       ->paginate(5);
+            $url = $request->url()."?";
         }
         else{
             switch ($request->input('gender')) {
@@ -38,9 +40,12 @@ class BrowseUserController extends Controller
                                       ->where('city_id', 'LIKE', $city)
                                       ->whereNotIn('id',[$user_id])
                                       ->paginate(5);
+
+            $url = $request->fullUrl()."&";
+
         }
 
-
+        //Handle like request
         if($request->has('like','target')){
             $target = $request->input('target');
             $like = $request->input('like');
@@ -61,7 +66,7 @@ class BrowseUserController extends Controller
             }
         }
 
-        return view('user.browse', ["users"=>$user]);
+        return view('user.browse', ["users"=>$user, "url"=>$url]);
     }
 
     public function filter_user(Request $request){
