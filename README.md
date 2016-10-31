@@ -1,6 +1,6 @@
 # How to run DevLovers App
 ## Clone this repository
-git clone https://gitlab.com/dwisulfahnur/devlovers
+<tt>git clone https://gitlab.com/dwisulfahnur/devlovers</tt>
 
 ## Configure database
 DevLovers app using Mysql.
