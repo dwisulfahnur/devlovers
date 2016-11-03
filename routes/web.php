@@ -12,28 +12,33 @@
 */
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect('browse_user');
 })->name('welocome');
 
 Route::group(['middleware' => 'checkuser'], function(){
-    //test Home route
-    Route::get('/home', 'UserController@home')->name('home');
-
     //browse User
-    Route::get('/browse_user', 'BrowseUserController@browse_user');
-    Route::get('/filter_user', 'BrowseUserController@filter_user');
+    Route::get('/browse_user', 'DevLovers\BrowseUserController@browse_user')->name('browse_user');
+    Route::get('/filter_user', 'DevLovers\BrowseUserController@filter_user');
+
+    //detail user route
+    Route::get('/user/{username}', 'DevLovers\UserController@detail_user');
+
+    //like route
+    Route::get('/like', 'DevLovers\LikeController@like');
+
+    // Logout Route
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 });
 
 Route::group(['middleware' => 'foruser'], function(){
     //Register Controller
-    Route::get('/register', 'UserController@register')->name('register');
-    Route::post('/register', 'UserController@postRegister');
+    Route::get('/register', 'Auth\RegisterController@register')->name('register');
+    Route::post('/register', 'Auth\RegisterController@postRegister');
 
     //Login Routes
-    Route::get('/login', 'UserController@login')->name('login');
-    Route::post('/login', 'UserController@postlogin');
+    Route::get('/login', 'Auth\LoginController@login')->name('login');
+    Route::post('/login', 'Auth\LoginController@postlogin');
+
 
 });
-
-Route::get('/logout', 'UserController@logout')->name('logout');

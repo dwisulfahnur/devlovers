@@ -13,7 +13,8 @@
         @endif
 
         <h1>Register</h1>
-        {!! Form::open(['url' => '/register', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'smart-form']) !!}
+        {!! Form::open(['url' => '/register', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+
             <div class="form-group">
                 <label for="image">Profile Picture</label>
                 <input name="image" type="file" class="form-control" value="{{ old('image') }}">
@@ -67,15 +68,6 @@
             </div>
 
             <div class="form-group">
-                <label for="prog_languages">Programming Languages:</label>
-                <select name="programming_languages[]" class="form-control margin" id="prog_languages" multiple="multiple" multiselect="multiselect">
-                    @foreach ($programming_languages as $language)
-                        <option value="{{ $language->id }}">{{ $language->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="city">City</label>
                 <select name="city" id="city" class="form-control">
                     @foreach ($cities as $city)
@@ -83,7 +75,6 @@
                     @endforeach
                 </select>
             </div>
-
             {!! Form::submit('Register', ["class"=>"btn btn-default"]) !!}
-        {{ Form::close() }}
+        {!! Form::close() !!}
     @endsection

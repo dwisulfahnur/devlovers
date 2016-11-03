@@ -1,6 +1,5 @@
 @extends('user.layouts.app')
-
-@section('title', 'Login')
+@section('title', 'Browse User')
 
     @section('content')
         @if ($errors)
@@ -10,19 +9,16 @@
                 @endforeach
             </ul>
         @endif
-        <h1>Browse User</h1>
-
-        <hr/>
         <a href="/filter_user"><button type="submit" class="btn btn-default">FILTER</button></a><hr/>
-        <div class="col-md-12">
+        <div class="col-md-12" style="text-align:center;">
         @if ($users)
             @foreach ($users as $user)
-                <div class="col-md-6">
-                    <img class="card-img-top" src="{{ $user->profile_picture }}" alt="Card image cap" width="300px" height="300px">
+                <div class="col-md-2" style="margin: 0 15px">
+                    <img class="card-img-top" src="{{ $user->profile_picture }}" alt="Card image cap" width="155px" height="155px">
                     <div class="card-block">
-                        <h4>{{ $user->full_name }}</h4>
-                        <a href="{{ $url }}like=1&target={{ $user->id }}" class="btn btn-primary disable">Like</a>
-                        <a href="{{ $url }}like=0&target={{ $user->id }}" class="btn btn-primary">Dislike</a>
+                        <a href="/user/{{ $user->username }}"><h4>{{ $user->full_name }}</h4></a>
+                        <a href="/like?like=1&target={{ $user->id }}" class="btn btn-primary disable">Like</a>
+                        <a href="/like?like=0&target={{ $user->id }}" class="btn btn-primary">Dislike</a>
                     </div>
                     <br>
                 </div>

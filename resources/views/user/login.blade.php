@@ -4,17 +4,17 @@
 
     @section('content')
         @if ($errors)
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    <strong>!!! </strong>{{ $error }}
+                </div>
+            @endforeach
         @endif
         <h1>Login:</h1>
         {!! Form::open(['url' => '/login', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
