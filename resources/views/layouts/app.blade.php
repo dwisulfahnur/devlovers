@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>DevLovers - @yield('title')</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.min.css') }}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
             .container{
                 width: 80%;
@@ -17,7 +17,7 @@
             </div>
             @if (session('username'))
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/browse_user">Browse</a></li>
+              <li class="active"><a href="{{ route('browse_user') }}">Browse</a></li>
               <li><a href="/">Like User</a></li>
               <li><a href="/">Match User</a></li>
             </ul>
@@ -30,13 +30,13 @@
                     </ul>
                  </li>
 
-                <li><a href=""><span class="glyphicon glyphicon-user"></span>  {{ $user_self->full_name }}</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="{{ route('detail_user', session('username')) }}"><span class="glyphicon glyphicon-user"></span>  {{ session('full_name') }}</a></li>
+                <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
             @else
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+              <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
             @endif
           </div>
@@ -48,6 +48,6 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{{ URL::asset('js/bootstrap.min.js') }}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>

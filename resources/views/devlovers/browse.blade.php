@@ -1,4 +1,4 @@
-@extends('user.layouts.app')
+@extends('layouts.app')
 @section('title', 'Browse User')
 
     @section('content')
@@ -9,16 +9,16 @@
                 @endforeach
             </ul>
         @endif
-        <a href="/filter_user"><button type="submit" class="btn btn-default">FILTER</button></a><hr/>
+        <a href="{{ route('filter_user') }}"><button type="submit" class="btn btn-default">FILTER</button></a><hr/>
         <div class="col-md-12" style="text-align:center;">
         @if ($users)
             @foreach ($users as $user)
                 <div class="col-md-2" style="margin: 0 15px">
                     <img class="card-img-top" src="{{ $user->profile_picture }}" alt="Card image cap" width="155px" height="155px">
                     <div class="card-block">
-                        <a href="/user/{{ $user->username }}"><h4>{{ $user->full_name }}</h4></a>
-                        <a href="/like?like=1&target={{ $user->id }}" class="btn btn-primary disable">Like</a>
-                        <a href="/like?like=0&target={{ $user->id }}" class="btn btn-primary">Dislike</a>
+                        <a href="{{ $user->username }}"><h4>{{ $user->full_name }}</h4></a>
+                        <a href="{{ route('like', ['like'=>'1', 'target'=>$user->id])}}" class="btn btn-primary disable">Like</a>
+                        <a href="{{ route('like', ['like'=>'0', 'target'=>$user->id])}}" class="btn btn-primary">Dislike</a>
                     </div>
                     <br>
                 </div>
