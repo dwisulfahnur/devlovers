@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ForUser
+class UnAuth
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class ForUser
      */
     public function handle($request, Closure $next)
     {
-        if($user_session = $request->session()->get('username') !== null){
-            return redirect('/home');
+        if(! $request->session()->has('id', 'username', 'full_name')){
+            return redirect('/login');
         }
         return $next($request);
     }
