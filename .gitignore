@@ -11,4 +11,4 @@ public/storage
 .env
 
 #image file
-public/images
+storage/images
