@@ -14,7 +14,7 @@
         @if ($users)
             @foreach ($users as $user)
                 <div class="col-md-2" style="margin: 0 15px">
-                    <img class="card-img-top" src="{{ $user->profile_picture }}" alt="Card image cap" width="155px" height="155px">
+                    <img class="card-img-top" src="{{ route('image', ['profile_picture'=>$user->profile_picture ]) }}" alt="Card image cap" width="155px" height="155px">
                     <div class="card-block">
                         <a href="{{ $user->username }}"><h4>{{ $user->full_name }}</h4></a>
                         <a href="{{ route('like', ['like'=>'1', 'target'=>$user->id])}}" class="btn btn-primary disable">Like</a>

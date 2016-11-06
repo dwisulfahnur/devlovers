@@ -20,7 +20,7 @@
             <div class="form-group">
 
                 <label for="image">Profile Picture </label><br/>
-                <img src="/{{ $user_self->profile_picture }}" width="200px" height="200px"><br/><br/>
+                <img src="{{ route('image', ['profile_picture'=>$user_self->profile_picture ]) }}" width="200px" height="200px"><br/><br/>
                 <input name="image" type="file" class="form-control" value="{{ old('image') }}">
                 <p class="help-block"><i>(* Keep blank if you will not change)</i></p>
             </div>
