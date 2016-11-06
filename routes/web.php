@@ -11,34 +11,41 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('browse_user');
-})->name('welocome');
+Route::get('', function(){
+    return redirect()->route('browse_user');
+});
 
-Route::group(['middleware' => 'checkuser'], function(){
-    //browse User
-    Route::get('/browse_user', 'DevLovers\BrowseUserController@browse_user')->name('browse_user');
-    Route::get('/filter_user', 'DevLovers\BrowseUserController@filter_user');
 
-    //detail user route
-    Route::get('/user/{username}', 'DevLovers\UserController@detail_user');
+Route::group(['middleware' => 'auth'], function(){
+    //Register Controller
+    Route::get('register', 'Auth\RegisterController@register')->name('register');
+    Route::post('register', 'Auth\RegisterController@postRegister');
 
-    //like route
-    Route::get('/like', 'DevLovers\LikeController@like');
-
-    // Logout Route
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    //Login Routes
+    Route::get('login', 'Auth\LoginController@login')->name('login');
+    Route::post('login', 'Auth\LoginController@postlogin');
 
 });
 
-Route::group(['middleware' => 'foruser'], function(){
-    //Register Controller
-    Route::get('/register', 'Auth\RegisterController@register')->name('register');
-    Route::post('/register', 'Auth\RegisterController@postRegister');
+Route::group(['middleware' => 'unauth'], function(){
+    //browse User
+    Route::get('browse_user', 'DevLovers\BrowseUserController@browse_user')->name('browse_user');
+    Route::get('filter_user', 'DevLovers\BrowseUserController@filter_user')->name('filter_user');
 
-    //Login Routes
-    Route::get('/login', 'Auth\LoginController@login')->name('login');
-    Route::post('/login', 'Auth\LoginController@postlogin');
+    // edit_profile route
+    Route::get('edit_profile', 'DevLovers\UserController@edit_profile')->name('edit_profile');
+    Route::put('edit_profile', 'DevLovers\UserController@put_edit_profile');
 
+    //Image Route
+    Route::get('images/{profile_picture}', 'DevLovers\FileController@getImage')->name('image');
+
+    //like route
+    Route::get('like', 'DevLovers\LikeController@like')->name('like');
+
+    // Logout Route
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+    //detail user route
+    Route::get('{username}', 'DevLovers\UserController@detail_user')->name('detail_user');
 
 });
