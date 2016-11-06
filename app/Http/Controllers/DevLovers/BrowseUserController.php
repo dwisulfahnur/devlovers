@@ -13,17 +13,18 @@ class BrowseUserController extends Controller
 {
     public function browse_user(Request $request){
 
-        // User initialization which will be hidden
-        $user_self = DB::table('users')->select('id', 'full_name')->where('username', $request->session()->get('username'))->first();
+        //----------- make an array of user id which will be hidden in view-------------//
         $user_like = DB::table('users_likes')->select('target_user_id')
-                                             ->where('user_id'  , $user_self->id)
+                                             ->where('user_id', session('id'))
                                              ->where('like', 1)
                                              ->get();
+
         $user_hide = [];
         foreach ($user_like as $user){
             array_push($user_hide, $user->target_user_id);
         }
-        array_push($user_hide, $user_self->id);
+        array_push($user_hide,  $request->session()->get('id'));
+        //---------------------------------###########---------------------------------//
 
         // Handle browse user with filter or without filter
         $_gender = $request->has('gender');
@@ -56,14 +57,16 @@ class BrowseUserController extends Controller
 
         }
 
-        return view('user.browse', ["users"=>$user, "user_self"=>$user_self]);
+        $data['users'] = $user;
+        return view('devlovers.browse', $data);
     }
 
     public function filter_user(Request $request){
-        $user_self = DB::table('users')->select('id', 'full_name')->where('username', $request->session()->get('username'))->first();
         $roles = DB::table('roles')->select('id', 'name')->get();
         $cities = DB::table('cities')->select('id', 'name')->get();
 
-        return view('user.browse_filter', ["roles"=>$roles, "cities"=>$cities, "user_self"=>$user_self]);
+        $data['roles'] = $roles;
+        $data['cities'] = $cities;
+        return view('devlovers.browse_filter', $data);
     }
 }

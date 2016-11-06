@@ -8,63 +8,41 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Libraries\DevLovers\UserObject;
+use App\Libraries\DevLovers\UserLike;
+use App\Libraries\DevLovers\UserMatch;
+
 class LikeController extends Controller
 {
     public function like(Request $request)
     {
-        #Procedure for check match user
-        function check_match($user_id, $target){
-            if((DB::table('users_likes')->where('user_id', $user_id)
-                                               ->where('target_user_id', $target)
-                                               ->where('like', 1)
-                                               ->first())){
-                if((DB::table('users_likes')->where('user_id', $target)
-                                                   ->where('target_user_id', $user_id)
-                                                   ->where('like', 1)
-                                                   ->first())){
-
-                    DB::table('users_matches')->insert(['user_id'=>$user_id, 'user_match_id'=>$target]);
-                    DB::table('users_matches')->insert(['user_id'=>$target, 'user_match_id'=>$user_id]);
-                }
-
-            }
-
-        }
-
-        //Handle like request and user matches
-        $user_id = DB::table('users')->select('id')->where('username', $request->session()->get('username'))->first()->id;
+        //------------------------- Handle like request and user matches ---------------------------//
         if($request->has('like','target')){
-            $target = $request->input('target');
-            $like = $request->input('like');
-            $user_has_likes = DB::table('users_likes')->where('user_id', $user_id)
-                                                      ->where('target_user_id', $target)
-                                                      ->first();
-            if($user_has_likes){
-                if(settype(! $user_has_likes->like === $like){
-                    DB::table('users_likes')->where('user_id', $user_id)
-                                            ->where('target_user_id', $target)
-                                            ->update(['like'        =>$like,
-                                                      'updated_at'  => \Carbon\Carbon::now()]);
-                    if($like==='1'){
-                        check_match($user_id, $target);
+
+            $user_self_id = session('id');
+            $target_user_id = $request->input('target');
+            $like = $request->input('like') ? 1 : 0;
+
+            $user_like = UserLike::getUserLike($user_self_id, $target_user_id);
+
+            if($user_like And !($user_like->like === $like)){
+                if($like === 1){
+                    if(UserMatch::isMatch($user_self_id, $target_user_id)){     //check if User is Match
+                        UserMatch::createMatch($user_self_id, $target_user_id);      //Create User Match
+                    }
+                    if($user_like->like === 0){  //If user want to change dislike to like
+                        UserLike::updateUserLike($user_self_id, $target_user_id, $like); //Update to Like (1)
                     }
                 }
-                return redirect()->back();
             }
-            else{
-                DB::table('users_likes')->insert([
-                    'user_id'           => $user_id,
-                    'target_user_id'    => $target,
-                    'like'              => $like,
-                    "created_at"        => \Carbon\Carbon::now(),
-                    "updated_at"        => \Carbon\Carbon::now()
-                ]);
-                if($like===1){
-                    check_match($user_id, $target);
+            if(!$user_like){
+                UserLike::createUserLike($user_self_id, $target_user_id, $like);
+                if(UserMatch::isMatch($user_self_id, $target_user_id)){     //check if User is Match
+                    UserMatch::createMatch($user_self_id, $target_user_id);      //Create User Match
                 }
-                return redirect()->back();
             }
-        }
 
+        }
+        return redirect()->back();
     }
 }
