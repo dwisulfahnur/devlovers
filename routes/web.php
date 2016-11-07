@@ -10,14 +10,9 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-use Illuminate\Http\Request;
-
 Route::get('', function(){
     return redirect()->route('browse_user');
 });
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 Route::group(['middleware' => 'auth'], function(){
     //Register Controller
