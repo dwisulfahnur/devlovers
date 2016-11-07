@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\DevLovers;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
-use App\Http\Requests\UserRequest;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests;
 
 use App\Libraries\DevLovers\UserView;
 use App\Libraries\DevLovers\UserObject;
@@ -83,10 +82,10 @@ class UserController extends Controller
         return view('devlovers.edit_profile', $data);
     }
 
-    public function put_edit_profile(Request $request){
+    public function put_edit_profile(UserRequest $request){
 
         $user = DB::table('users')->where('id', session('id'))->first();
-        $imgName = $request->input('username').time().'.'.$request->image->getClientOriginalExtension();
+
         //create user object
         $user_object = [
                     'full_name'  => $request->input('full_name'),
@@ -94,16 +93,16 @@ class UserController extends Controller
                     'username'   => $request->input('username'),
                     'dob'        => $request->input('dob'),
                     'gender'     => $request->input('gender'),
-                    'profile_picture' => $imgName,
                     'roles_id'   => $request->input('roles'),
                     'city_id'    => $request->input('city'),
-                    'updated_at'      => \Carbon\Carbon::now()
+                    'updated_at' => \Carbon\Carbon::now()
                 ];
-
+        if($request->hasFile('image')){
+            $imgName = $request->input('username').time().'.'.$request->image->getClientOriginalExtension();
+            $user_object['profile_picture'] = $imgName;
+            $request->image->move(storage_path('images'), $imgName);
+        }
         if(DB::table('users')->where('id', $user->id)->update($user_object)){
-            if($request->hasFile('image')){
-                $request->image->move(storage_path('images'), $imgName);
-            }
             DB::table('users_programming_languages')->where('user_id', $user->id)->delete();
             $users_programming_languages = $request->programming_languages;
             foreach($users_programming_languages as $language){
