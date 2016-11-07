@@ -15,7 +15,7 @@ class CreateProgrammingLanguagesTable extends Migration
     {
         Schema::create('programming_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 20);
+            $table->string('name', 20)->unique();
             $table->string('description', 1000);
             $table->timestamps();
             $table->softDeletes();
