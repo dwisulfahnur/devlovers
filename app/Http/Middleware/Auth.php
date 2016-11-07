@@ -16,7 +16,7 @@ class Auth
     public function handle($request, Closure $next)
     {
         if($request->session()->has('id', 'username', 'email', 'full_name')){
-            return redirect('/');
+            return redirect()->route('home');
         }
         return $next($request);
     }
