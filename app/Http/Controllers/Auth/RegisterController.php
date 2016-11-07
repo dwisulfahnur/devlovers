@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\LoginRequest;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller

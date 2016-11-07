@@ -34,6 +34,7 @@ class LoginController extends Controller
             $request->session()->put('id', $user->id);
             $request->session()->put('username', $user->username);
             $request->session()->put('full_name', $user->full_name);
+            $request->session()->put('email', $user->email);
             return redirect('/');
         }
         else{
