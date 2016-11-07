@@ -61,7 +61,11 @@
                 <label for="roles">Roles:</label>
                 <select name="roles" class="form-control" id="roles">
                     @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @if ( old('roles') === $role->id )
+                            <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                        @else
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -70,7 +74,11 @@
                 <label for="prog_languages">Programming Languages:</label>
                 <select name="programming_languages[]" class="form-control margin" id="prog_languages" multiple="multiple" multiselect="multiselect">
                     @foreach ($programming_languages as $language)
-                        <option value="{{ $language->id }}">{{ $language->name }}</option>
+                        @if ( (old('programming_languages')!== null) and (in_array($language, old('programming_languages'))) )
+                            <option value="{{ $language->id }}" selected>{{ $language->name }}</option>
+                        @else
+                            <option value="{{ $language->id }}">{{ $language->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -79,7 +87,11 @@
                 <label for="city">City</label>
                 <select name="city" id="city" class="form-control">
                     @foreach ($cities as $city)
-                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @if ( old('city') === $city->id )
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @else
+                            <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
