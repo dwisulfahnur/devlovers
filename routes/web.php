@@ -11,7 +11,7 @@
 |
 */
 Route::get('', function(){
-    return redirect()->route('browse_user');
+    return redirect()->route('browse_user')->name('home');
 });
 
 Route::group(['middleware' => 'auth'], function(){
