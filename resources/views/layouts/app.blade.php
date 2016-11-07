@@ -13,7 +13,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container-fluid" style="width:1050.800; margin:0 auto; padding:0">
             <div class="navbar-header">
-              <a class="navbar-brand" href="/">DevLovers</a>
+              <a class="navbar-brand" href="{{ route('home') }}">DevLovers</a>
             </div>
             @if (session('username'))
             <ul class="nav navbar-nav">
