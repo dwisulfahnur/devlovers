@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
                 'email'                 =>  'required|min:8|email|unique:users,email',
                 'username'              =>  'required|min:8|unique:users,username',
                 'password'              =>  'required|min:6|confirmed',
-                'password_confirmation' =>  'required|min:6|same:password',
+                'password_confirmation' =>  'required|min:6',
                 'dob'                   =>  'required|before:now',
                 'gender'                =>  'required|boolean',
                 'roles'                 =>  'required|exists:cities,id',
