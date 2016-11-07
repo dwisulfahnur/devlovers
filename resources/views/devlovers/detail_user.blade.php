@@ -25,6 +25,7 @@
                 <hr/>
                 @if ( $user->username === session('username') )
                     <a href="{{ route('edit_profile') }}" class="btn btn-primary">EDIT PROFILE</a>
+                    <a href="{{ route('change_password') }}" class="btn btn-primary">CHANGE PASSWORD</a>
                 @else
                     <a href="{{ route('like', ['like'=>'1', 'target'=>$user->id])}}" class="btn btn-primary disable">Like</a>
                     <a href="{{ route('like', ['like'=>'0', 'target'=>$user->id])}}" class="btn btn-primary">Dislike</a>
