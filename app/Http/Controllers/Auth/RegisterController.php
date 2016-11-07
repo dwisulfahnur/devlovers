@@ -44,7 +44,7 @@ class RegisterController extends Controller
                     'gender'     => $request->input('gender'),
                     'roles_id'   => $request->input('roles'),
                     'city_id'    => $request->input('city'),
-                    'profile_picture' => 'images/' . $imageName,
+                    'profile_picture' => $imageName,
                     "created_at"      => \Carbon\Carbon::now(),
                     "updated_at"      => \Carbon\Carbon::now()
                 ];
