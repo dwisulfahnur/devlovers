@@ -10,11 +10,14 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use Illuminate\Http\Request;
 
 Route::get('', function(){
     return redirect()->route('browse_user');
 });
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 Route::group(['middleware' => 'auth'], function(){
     //Register Controller
@@ -35,6 +38,10 @@ Route::group(['middleware' => 'unauth'], function(){
     // edit_profile route
     Route::get('edit_profile', 'DevLovers\UserController@edit_profile')->name('edit_profile');
     Route::put('edit_profile', 'DevLovers\UserController@put_edit_profile');
+
+    // Password Change Route
+    Route::get('change_password', 'Auth\ChangePasswordController@change')->name('change_password');
+    Route::put('change_password', 'Auth\ChangePasswordController@put_change');
 
     //Image Route
     Route::get('images/{profile_picture}', 'DevLovers\FileController@getImage')->name('image');
