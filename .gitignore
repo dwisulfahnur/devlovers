@@ -11,4 +11,5 @@ public/storage
 .env
 
 #image file
-storage/images
+storage/images/*
+index.php
