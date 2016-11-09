@@ -35,6 +35,7 @@ class UserRequest extends FormRequest
                 'dob'                   =>  'required|before:now',
                 'gender'                =>  'required|boolean',
                 'roles'                 =>  'required|exists:cities,id',
+                'programming_languages' =>  'exists:programming_languages,id',
                 'city'                  =>  'required|exists:cities,id'
             ];
         }
@@ -48,6 +49,7 @@ class UserRequest extends FormRequest
                 'dob'                   =>  'required|before:now',
                 'gender'                =>  'required|boolean',
                 'roles'                 =>  'required|exists:roles,id',
+                'programming_languages' =>  'exists:programming_languages,id',
                 'city'                  =>  'required|exists:cities,id'
             ];
 
