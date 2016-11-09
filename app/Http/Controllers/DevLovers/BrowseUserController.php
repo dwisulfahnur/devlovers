@@ -47,7 +47,6 @@ class BrowseUserController extends Controller
                                       ->where('city_id', 'LIKE', $city)
                                       ->whereNotIn('id',$user_hide)
                                       ->paginate(5);
-
         }
 
         $data['users'] = $user;
