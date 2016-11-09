@@ -51,7 +51,9 @@ class RegisterController extends Controller
         $user_programming_languages = $request->input('programming_languages');
 
         //Save User data and Profile picture to Storage if not Fail.
-        if ( $request->image->move(storage_path('images'), $imageName) And DB::table('users')->insert([$user]) )
+
+        $image = \Input::file('image');
+        if ( \Image::make($image->getRealPath())->resize(250, 250)->save(storage_path('images/').$imgName) And DB::table('users')->insert([$user]) )
         {
             $user_self_id = DB::table('users')->where('email', $user['email'])->first()->id;
             if($user_self_id){

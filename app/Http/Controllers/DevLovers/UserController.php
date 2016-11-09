@@ -97,10 +97,12 @@ class UserController extends Controller
                     'city_id'    => $request->input('city'),
                     'updated_at' => \Carbon\Carbon::now()
                 ];
+
         if($request->hasFile('image')){
-            $imgName = $request->input('username').time().'.'.$request->image->getClientOriginalExtension();
+            $image = \Input::file('image');
+            $imgName = \Input::get('username').time().'.'.$request->image->getClientOriginalExtension();
+            \Image::make($image->getRealPath())->resize(250, 250)->save(storage_path('images/') . $imgName);
             $user_object['profile_picture'] = $imgName;
-            $request->image->move(storage_path('images'), $imgName);
         }
         if(DB::table('users')->where('id', $user->id)->update($user_object)){
             DB::table('users_programming_languages')->where('user_id', $user->id)->delete();
