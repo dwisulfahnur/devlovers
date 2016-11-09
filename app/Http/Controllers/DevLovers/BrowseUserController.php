@@ -37,14 +37,7 @@ class BrowseUserController extends Controller
                                       ->paginate(5);
         }
         else{
-            switch ($request->input('gender')) {
-                case '0':
-                    $gender = '0'; break;
-                case '1':
-                    $gender = '1'; break;
-                default:
-                    $gender = '%'; break;
-            }
+            $gender = ($request->input('gender') === '0') ? '0' : '1';
             $roles = ($request->input('roles')) ? $request->input('roles') : '%';
             $city = ($request->input('city')) ? $request->input('city') : '%';
 
