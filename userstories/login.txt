@@ -1,0 +1,5 @@
+- saya sebagai user, ingin login tapi belum memiliki akun.
+- saya sebagai user, ingin login menggunakan username dan password saya.
+- saya sebagai user, ingin login menggunakan email dan password saya.
+- saya sebagai user, ingin login tapi lupa email dan username yang saya gunakan pada saat mendaftar.
+- saya sebagai user, ingin login tapi lupa password saya.

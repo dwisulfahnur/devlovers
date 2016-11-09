@@ -1,0 +1,5 @@
+- saya sebagai user, ingin melakukan like atau dislike terhadap seorang user.
+- saya sebagai user, berubah pikiran untuk melakukan dislike terharap user yang telah saya like sebelumnya ataupun sebaliknya.
+- saya sebagai user, ingin melihat user yang telah saya like tetapi tidak tampil.
+- saya sebagai user, ingin melihat user yang match dengan saya tetapi tidak tampil.
+- saya sebagai user, ingin melihat user yang telah menyukai saya.

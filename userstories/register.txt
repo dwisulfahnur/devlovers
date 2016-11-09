@@ -1,0 +1,12 @@
+- Saya sebagai user, ingin mendaftar tapi tidak punya skills di pemrograman.
+- Saya sebagai user, ingin mendaftar dan punya skills lebih dari satu di pemrograman.
+- Saya sebagai user, ingin mendaftar dan saya tidak ingin menggunakan nama asli saya.
+- Saya sebagai user, ingin mendaftar dan tidak mempunyai email.
+- Saya sebagai user, ingin mendaftar dan mempunyai skill bahasa pemrograman yang tidak disediakan pada form bahasa pemrograman yang tersedia.
+- Saya sebagai user, ingin mendaftar dan mempunyai lebih dari satu roles.
+- Saya sebagai user, ingin mendaftar dan roles saya tidak ada pada form roles yang disediakan.
+- Saya sebagai user, ingin mendaftar dan jenis kelamin saya tidak ada pada form gender yang disediakan.
+- Saya sebagai user, ingin mendaftar tetapi nama saya lebih dari 8 karakter.
+- saya sebagai user, ingin mendaftar dengan menggunakan email palsu.
+- saya sebagai user, ingin menggunakan password yang sama dengan nama saya.
+- saya sebagai user, ingin mendaftar tanpa foto profil.
