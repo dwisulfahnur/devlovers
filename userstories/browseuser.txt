@@ -2,5 +2,5 @@
 - saya sebagai user, ingin melihat secara detail tentang seorang user.
 - saya sebagai user, ingin melakukan perubahan pada data user saya.
 - saya sebagai user, ingin merubah password saya.
-- saya sebagai user, tidak ingin melihat seorang user tertentu selamanya :D.
+- saya sebagai user, tidak ingin melihat seorang user tertentu selamanya :D..
 - saya sebagai user, ingin melihat user tapi belum login.
