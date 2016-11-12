@@ -10,6 +10,11 @@
                 </div>
             @endforeach
         @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <h1>Login:</h1>
         {!! Form::open(['url' => '/login', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">

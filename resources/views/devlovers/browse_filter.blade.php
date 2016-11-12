@@ -10,6 +10,11 @@
                 @endforeach
             </ul>
         @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <h1>Filter</h1>
 
         {!! Form::open(['url' => 'browse_user', 'method' => 'get', 'enctype' => 'multipart/form-data']) !!}

@@ -11,6 +11,11 @@
                 </div>
             @endforeach
         @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="col-md-12" style="margin: 0 15px; text-align:center; margin-top:5px;">
             <img src="{{ route('image', ['profile_picture'=>$user->profile_picture ]) }}" width="250px" height="250px" style="border-radius:50%">
             <div class="card-block" style="size:15">

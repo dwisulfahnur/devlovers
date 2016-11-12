@@ -11,6 +11,11 @@
                 </div>
             @endforeach
         @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <h1>Register</h1>
         {!! Form::open(['url' => '/register', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'smart-form']) !!}

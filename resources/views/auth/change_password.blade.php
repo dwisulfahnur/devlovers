@@ -11,14 +11,14 @@
                 </div>
             @endforeach
         @endif
-        @if (session('status'))
+        @if (session('success'))
             <div class="alert alert-success">
-                {{ session('status') }}
+                {{ session('success') }}
             </div>
         @endif
 
         <h1>Change your password</h1>
-        {!! Form::open(['url' => 'change_password', 'method' => 'put', 'enctype' => 'multipart/form-data', 'class' => 'smart-form']) !!}
+        {!! Form::open(['url' => route('change_password'), 'method' => 'put', 'enctype' => 'multipart/form-data', 'class' => 'smart-form']) !!}
             <div class="form-group">
                 <label for="pwd">Old Password</label>
                 <input type="password" class="form-control" id="pwd" name="password">
@@ -34,6 +34,6 @@
                 <input type="password" class="form-control" id="re-pwd" name="new_password_confirmation">
             </div>
 
-            {!! Form::submit('Register', ["class"=>"btn btn-default"]) !!}
+            {!! Form::submit('SAVE', ["class"=>"btn btn-default"]) !!}
         {{ Form::close() }}
     @endsection

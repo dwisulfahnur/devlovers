@@ -11,12 +11,17 @@
                 </div>
             @endforeach
         @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="col-md-12" style="margin: 0 15px; text-align:center; margin-top:20px;">
 
             <br>
         </div>
 
-        {!! Form::open(['url' => '/edit_profile', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['url' => route('edit_profile'), 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
 
                 <label for="image">Profile Picture </label><br/>
