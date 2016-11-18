@@ -16,10 +16,8 @@
                 {{ session('success') }}
             </div>
         @endif
-        <div class="col-md-12" style="margin: 0 15px; text-align:center; margin-top:20px;">
-
-            <br>
-        </div>
+        <!--div class="col-md-12" style="margin: 0 15px; text-align:center; margin-top:20px;">
+        </div-->
 
         {!! Form::open(['url' => route('edit_profile'), 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
