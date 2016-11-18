@@ -111,6 +111,6 @@ class UserController extends Controller
                 DB::table('users_programming_languages')->insert(['user_id' => $user->id, 'programming_languages_id' => $language]);
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Profile updated!');
     }
 }
