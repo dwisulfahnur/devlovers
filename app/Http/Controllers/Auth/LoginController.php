@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
@@ -15,7 +15,6 @@ use App\Libraries\DevLovers\UserObject;
 
 class LoginController extends Controller
 {
-
     public function login()
     {
         return view('auth.login');
@@ -44,7 +43,7 @@ class LoginController extends Controller
 
     public function logout(Request $request){
         $request->session()->flush();
-        return redirect('login');
+        return redirect('login')->with('success', 'You has logged out!');
     }
 
 }
