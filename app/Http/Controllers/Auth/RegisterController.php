@@ -53,7 +53,7 @@ class RegisterController extends Controller
         //Save User data and Profile picture to Storage if not Fail.
 
         $image = \Input::file('image');
-        if ( \Image::make($image->getRealPath())->resize(250, 250)->save(storage_path('images/').$imgName) And DB::table('users')->insert([$user]) )
+        if ( \Image::make($image->getRealPath())->resize(250, 250)->save(storage_path('images/').$imageName) And DB::table('users')->insert([$user]) )
         {
             $user_self_id = DB::table('users')->where('email', $user['email'])->first()->id;
             if($user_self_id){
@@ -61,7 +61,7 @@ class RegisterController extends Controller
                     DB::table('users_programming_languages')->insert(['user_id' => $user_self_id, 'programming_languages_id' => $language]);
                 }
 
-                return redirect('/login');
+                return redirect()->route('login')->with('success','You has resgistered, login please!');
             }
         }
         else{
